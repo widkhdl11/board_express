@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     const comparePassword = bcrypt.compareSync(password, user.password);
 
     if (!comparePassword) {
-      return res.json({
+      return res.status(400).json({
         ok: false,
         message: "Incorrect password.",
       });
@@ -88,9 +88,9 @@ export const verifyToken = (req: any, res: Response, next: NextFunction) => {
   }
 };
 
-router.get("/", verifyToken, (req: any, res) => {
-  console.log(req.account);
-  res.send("ok");
-});
+// router.get("/", verifyToken, (req: any, res) => {
+//   console.log(req.account);
+//   res.send("ok");
+// });
 
 export default router;

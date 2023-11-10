@@ -10,7 +10,12 @@ const port = process.env.PORT || 3010;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONT_URL,
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   return res.send("Hello, ExpressTS!");

@@ -4,9 +4,9 @@
 
 @layer components {
   .input-style {
-    @apply px-4 py-2 focus:outline-none border-2 rounded-lg focus:border-pink-300;
+    @apply px-4 py-2 focus:outline-none border-2 rounded-lg focus:border-blue-300;
   }
   .button-style {
-    @apply px-4 py-2 text-white active:text-pink-600 bg-pink-600 border-2 border-white active:border-pink-600 rounded-lg;
+    @apply text-white bg-blue-500 hover:text-blue-700 active:bg-blue-900 ml-4 px-2 py-1 rounded-lg;
   }
 }

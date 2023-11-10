@@ -6,6 +6,19 @@ const router = express.Router();
 
 const client = new PrismaClient();
 
+const select = {
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  content: true,
+  userId: true,
+  user: {
+    select: {
+      account: true,
+    },
+  },
+};
+
 router.post("/", verifyToken, async (req: any, res) => {
   try {
     const { content, postId } = req.body;
@@ -35,7 +48,7 @@ router.post("/", verifyToken, async (req: any, res) => {
       data: {
         content,
         userId: user.id,
-        postId: postId,
+        postId: +postId,
       },
     });
 
@@ -66,6 +79,7 @@ router.get("/", async (req, res) => {
       where: {
         postId: +postId,
       },
+      select,
     });
 
     return res.json({

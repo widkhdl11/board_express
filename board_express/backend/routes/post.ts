@@ -103,6 +103,23 @@ router.get("/", async (req, res) => {
     });
   }
 });
+
+router.get("/count", async (req, res) => {
+  try {
+    const posts = await client.post.findMany();
+    return res.json({
+      ok: true,
+      count: posts.length,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      message: "Server error.",
+    });
+  }
+});
+
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
